@@ -3,7 +3,8 @@ docker build -f Dockerfile.models --build-arg HUGGINGFACE_ACCESS_TOKEN=your_toke
 # 1. Build the image
 set -a; source .env; set +a;
 DOCKER_BUILDKIT=1 docker build --build-arg HUGGINGFACE_ACCESS_TOKEN=$HUGGINGFACE_ACCESS_TOKEN \
- --progress plain -t whitemoney293/comfyui-flux-models:v1.1.0 .
+ --build-arg CIVITAI_API_KEY=$CIVITAI_API_KEY \
+ --progress plain -t whitemoney293/comfyui-flux-models:v1.2.0 . 2>&1 | tee build.log
 
 # 2. Push the image
-docker push whitemoney293/comfyui-flux-models:v1.1.0
+docker push whitemoney293/comfyui-flux-models:v1.2.0
